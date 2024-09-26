@@ -4,6 +4,7 @@ import random
 from snake import Snake
 
 snake = Snake(3)
+#This is a new line inside code
 snake.generate_screen()
 snake.generate_snake()
 snake.update_score_board()
