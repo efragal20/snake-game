@@ -12,7 +12,7 @@ snake.draw_walls()
 food = snake.generate_food()
 snake.screen.update()
 
-snake.game_on()
+#snake.game_on()
 
 ##segment_1 = Turtle("square")
 ##segment_1.color("white")
