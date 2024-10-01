@@ -121,10 +121,12 @@ class Snake:
             self.segments[0].seth(270)
 
     def move_left(self):
+        """Move to the left"""
         if self.segments[0].heading() != 0:
             self.segments[0].seth(180)
 
     def move_right(self):
+        """Move to the right"""
         if self.segments[0].heading() != 180:
             self.segments[0].seth(0)
     
