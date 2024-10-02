@@ -1,12 +1,13 @@
 from turtle import Turtle, Screen
 import time
 import random
+from food import Food
 
 class Snake:
-    def __init__(self, number_segments):
+    def __init__(self, number_segments, pixel_size):
         self.segments = []
         self.number_segments = number_segments
-        self.pixel_size=20
+        self.pixel_size=pixel_size
         self.refresh_rate = 0.1
         self.head_color = "green"
         self.body_color = "white"
@@ -17,6 +18,7 @@ class Snake:
         self.scoreboard.up()
         self.screen_size={"x": 600, "y": 600}
         self.game_is_on = True
+        self.food = Food(pixel_size=self.pixel_size)
 
     def generate_screen(self):
         """Generates an screen where the game is located"""
@@ -30,16 +32,6 @@ class Snake:
         self.screen.onkey(fun=self.move_down, key="Down")
         self.screen.onkey(fun=self.move_left, key="Left")
         self.screen.onkey(fun=self.move_right, key="Right")
-
-    def generate_food(self):
-        x = random.randint(-14,14)*self.pixel_size
-        y = random.randint(-14,14)*self.pixel_size
-        self.food_position = (x, y)
-        self.food = Turtle("square")
-        self.food.color("red")
-        self.food.penup()
-        self.food.goto(self.food_position)
-        self.food.speed(0)    
     
     def draw_walls(self):
         self.walls.color("white")
@@ -105,9 +97,9 @@ class Snake:
         self.head_position = self.update_segment_position(self.segments[0])
 
     def try_eat_food(self):
-        if self.head_position == self.food_position:
+        if self.head_position == self.food.food_position:
             self.add_snake_segment()
-            self.generate_food()
+            self.food = Food(pixel_size=self.pixel_size)
             self.score+=1
             self.update_score_board()
         self.refresh_snake()
