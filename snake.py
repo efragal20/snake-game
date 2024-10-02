@@ -36,7 +36,7 @@ class Snake:
     def draw_walls(self):
         self.walls.color("white")
         self.walls.penup()
-        self.walls.width(20)
+        self.walls.width(self.pixel_size)
         self.walls.setpos(-self.screen_size["x"]/2,self.screen_size["y"]/2)
         self.walls.pendown()
         self.walls.forward(self.screen_size["x"])
